@@ -1,0 +1,71 @@
+<?php
+
+/**
+ * @file
+ * Install and update functions for site settings module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function site_settings_uninstall() {
+  // drupal_uninstall_schema('node_counter');
+}
+
+/**
+ * Implements hook_schema().
+ */
+function site_settings_schema() {
+  $schema['node_counter'] = [
+    'description' => 'Node counter.',
+    'fields' => [
+      'nid' => [
+        'description' => 'The {node}.nid for these statistics.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'totalcount' => [
+        'description' => 'The total number of times the {node} has been viewed.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'big',
+      ],
+      'daycount' => [
+        'description' => 'The total number of times the {node} has been viewed today.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'medium',
+      ],
+      'uid' => [
+        'description' => 'The last user viewed the node.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'timestamp' => [
+        'description' => 'The most recent time the {node} has been viewed.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['nid'],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_update_last_removed().
+ */
+function site_settings_update_last_removed() {
+  return 8300;
+}

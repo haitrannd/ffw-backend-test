@@ -1,0 +1,22 @@
+site_settings.custom_site_settings:
+  path: '/custom-site-settings'
+  defaults:
+    _title: 'Site settings form'
+    _form: '\Drupal\site_settings\Form\SiteSettingsForm'
+  requirements:
+    _permission: 'administer site settings'
+
+site_settings.publish_control:
+  path: '/publish_control'
+  defaults:
+    _form: '\Drupal\site_settings\Form\PublishControlForm'
+  requirements:
+    _permission: 'administer site settings'
+
+site_settings.testing:
+  path: '/node-counter/{nid}'
+  methods:  [POST]
+  defaults:
+    _controller: '\Drupal\site_settings\Controller\NodeCounterController::nodeCounter'
+  requirements:
+    _access: 'TRUE'

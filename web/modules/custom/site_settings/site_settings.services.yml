@@ -1,0 +1,6 @@
+services:
+  site_settings.node_counter_action_handler:
+    class: Drupal\site_settings\NodeCounterActionHandler
+    arguments: [ '@database', '@state', '@request_stack' ]
+    tags:
+      - { name: backend_overridable }

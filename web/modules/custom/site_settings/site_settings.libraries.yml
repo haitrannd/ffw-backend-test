@@ -1,0 +1,9 @@
+site_settings.node_counter:
+  version: VERSION
+  js:
+    site_settings.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once

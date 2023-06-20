@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Contains random_quote.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function random_quote_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the random_quote module.
+    case 'help.page.random_quote':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Random Quote') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function random_quote_theme($existing, $type, $theme, $path): array {
+  return [
+    'random_quote_block' => [
+      'variables' => [
+        'data' => NULL,
+      ],
+    ],
+  ];
+}

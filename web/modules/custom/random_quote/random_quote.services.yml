@@ -1,0 +1,5 @@
+services:
+  service.random_quote:
+    class: Drupal\random_quote\RandomQuoteService
+    tags:
+      - { name: random_quote }

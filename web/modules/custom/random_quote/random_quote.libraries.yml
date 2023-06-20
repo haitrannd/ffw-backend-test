@@ -1,0 +1,5 @@
+random_quote:
+  version: 1.x
+  css:
+    theme:
+      css/random_quote.css: {}

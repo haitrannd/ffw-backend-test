@@ -1,0 +1,10 @@
+name: Drupal 9 Theme
+type: theme
+description: 'Drupal 9 Theme'
+package: Other
+core: 8.x
+core_version_requirement: ^8 || ^9
+libraries:
+  - drupal_9_theme/global-styling
+
+base theme: olivero

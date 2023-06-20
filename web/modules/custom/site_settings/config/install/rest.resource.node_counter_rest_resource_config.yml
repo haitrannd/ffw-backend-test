@@ -1,0 +1,9 @@
+id: node_counter_rest_resource_config
+plugin_id: node_counter_rest_resource
+granularity: method
+configuration:
+  POST:
+    supported_formats:
+      - json
+    supported_auth:
+      - basic_auth

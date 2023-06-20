@@ -1,0 +1,13 @@
+.random_quote_block__content {
+    font-size: 20px;
+    font-weight: bold;
+    width: 50%;
+    min-width: 300px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.random_quote_block__author {
+    text-align: center;
+    font-style: italic;
+}

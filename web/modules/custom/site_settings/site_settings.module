@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * @file
+ * Contains site_settings.module.
+ */
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_help().
+ */
+function site_settings_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the site_settings module.
+    case 'help.page.site_settings':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom site settings') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function site_settings_preprocess_page($variables) {
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function site_settings_preprocess_node($variables) {
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function site_settings_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  if ($view_mode == 'full' && node_is_page($node) && empty($node->in_preview)) {
+    $build['#attached']['library'][] = 'site_settings/site_settings.node_counter';
+    $build['#attached']['drupalSettings']['site_settings'] = [
+      'url' => \Drupal::request()->getBasePath() . '/' . 'node-counter/' . $node->id(),
+    ];
+
+    $node = $build['#node'];
+    $service = \Drupal::service('site_settings.node_counter_action_handler');
+    $nodeCounterData = $service->getNodeCounterData($node->id());
+    $user = User::load($nodeCounterData->uid);
+    $userName = $user->name->value;
+    $lastViewedDate = (new DrupalDateTime())->format('d.m.y h:i', $nodeCounterData->timestamp);
+    $nodeCounterData = [
+      'user_name' => $userName,
+      'last_viewed_date' => $lastViewedDate,
+      'total_count' => $nodeCounterData->totalcount,
+      'day_count' => $nodeCounterData->daycount,
+    ];
+    $build['#node']->node_counter = $nodeCounterData;
+  }
+}
