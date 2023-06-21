@@ -21,4 +21,8 @@ echo "${GREEN}---------Import configs---------${ENDCOLOR}"
 fin drush cim -y
 echo "*"
 echo "*"
+echo "${GREEN}---------Clear all caches---------${ENDCOLOR}"
+fin drush cr
+echo "*"
+echo "*"
 echo "${GREEN}---------Done!---------${ENDCOLOR}"
