@@ -1,7 +1,10 @@
 site_settings.node_counter:
   version: VERSION
+  css:
+    theme:
+      css/site_settings.css: {}
   js:
-    site_settings.js: {}
+    js/site_settings.js: {}
   dependencies:
     - core/jquery
     - core/drupal

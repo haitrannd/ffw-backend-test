@@ -91,11 +91,11 @@ class NodeCounterActionHandler {
       if (is_object($record)) {
         $totalCount = $record->totalcount + 1;
         $oldDate = (new DrupalDateTime())->format('Ymd', $record->timestamp);
-        if ($oldDate == $currentDate) {
-          $dayCount = $record->daycount + 1;
+        if (($currentTimestamp - $record->timestamp) >= 86400) {
+          $dayCount = 1;
         }
         else {
-          $dayCount = 1;
+          $dayCount = $record->daycount + 1;
         }
         $fields = array(
           'uid' => $uid == 0 ? $record->uid : $uid,

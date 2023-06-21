@@ -1,23 +1,6 @@
 <article{{ attributes }}>
 
   {{ title_prefix }}
-  <div class="node_counter_wrapper">
-    <h2 class="title">{{- node.title.value -}}</h2>
-    <div class="node_counter_block">
-      <div class="node_counter_block__view_number">
-      <div class="node_counter_block__label">{{ 'Number of views:'|t }}</div>
-      <div class="node_counter_block__info">
-        <span>{{ node.node_counter.day_count }}</span> {{ 'today'|t }} / <span>{{ node.node_counter.total_count }}</span> {{ 'total'|t }}
-      </div>
-      </div>
-      <div class="node_counter_block__last_viewed">
-      <div class="node_counter_block__label">{{ 'Last viewed by:'|t }}</div>
-      <div class="node_counter_block__info">
-        <span>{{ node.node_counter.user_name }}</span> {{ 'at'|t }} <span>{{ node.node_counter.last_viewed_date }}</span>
-      </div>
-      </div>
-    </div>
-  </div>
   {{ title_suffix }}
 
   <div{{ content_attributes }}>
